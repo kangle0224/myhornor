@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+    <h1>Index</h1>
+    <a href="/ajax1" onclick="ajax1()">点我</a>
+    <a href="/ajax2" onclick="ajax2()">点我</a>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script>
+        function ajax1() {
+            $.ajax({
+                url: "/ajax1",
+                type: "GET",
+                data: {"abc": 123},
+                success: function (arg) {
+                    console.log(arg)
+                }
+            })
+        }
+        function ajax2() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange(function () {
+                if(xhr.readyState == 4){
+                    console.log(xhr.responseText);
+                }
+            })
+            xhr.open('GET', '/ajax2?p=123');
+            xhr.send(null)
+            
+        }
+    </script>
+</body>
+</html>

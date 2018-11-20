@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
-# Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
+def ajax1(request):
+    return HttpResponse("ajax1")
+
+def ajax2(request):
+    return HttpResponse("ajax2")
