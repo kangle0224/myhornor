@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>ajax</title>
+    <style>
+        .btn {
+            background-color: antiquewhite;
+            padding: 5px 20px;
+            margin: 20px;
+            color: black;
+        }
+    </style>
 </head>
 <body>
     <h1>Index</h1>
-    <a href="/ajax1" onclick="ajax1()">点我</a>
-    <a href="/ajax2" onclick="ajax2()">点我</a>
-    <a href="/ajax1" onclick="ajax3()">点我</a>
-    <a href="/ajax2" onclick="ajax4()">点我</a>
+    <a class="btn" onclick="ajax1()">点我</a><br>
+    <a class="btn" onclick="ajax2()">点我</a><br>
+    <a class="btn" onclick="ajax3()">点我</a><br>
+    <a class="btn" onclick="ajax4()">点我</a><br>
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script>
         function ajax1() {
@@ -24,11 +32,11 @@
         }
         function ajax2() {
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange(function () {
+            xhr.onreadystatechange = function () {
                 if(xhr.readyState == 4){
                     console.log(xhr.responseText);
                 }
-            })
+            };
             xhr.open('GET', '/ajax2?p=123');
             xhr.send(null)
             
@@ -45,13 +53,14 @@
         }
         function ajax4() {
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange(function () {
+            xhr.onreadystatechange = function () {
                 if(xhr.readyState == 4){
                     console.log(xhr.responseText);
                 }
-            })
-            xhr.open('GET', '/ajax2?p=123');
-            xhr.send(null)
+            };
+            xhr.open('POST', '/ajax2');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset-UTF-8');
+            xhr.send("p=123");
 
         }
     </script>
