@@ -8,6 +8,8 @@
     <h1>Index</h1>
     <a href="/ajax1" onclick="ajax1()">点我</a>
     <a href="/ajax2" onclick="ajax2()">点我</a>
+    <a href="/ajax1" onclick="ajax3()">点我</a>
+    <a href="/ajax2" onclick="ajax4()">点我</a>
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script>
         function ajax1() {
@@ -30,6 +32,27 @@
             xhr.open('GET', '/ajax2?p=123');
             xhr.send(null)
             
+        }
+        function ajax3() {
+            $.ajax({
+                url: "/ajax1",
+                type: "POST",
+                data: {"abc": 123},
+                success: function (arg) {
+                    console.log(arg)
+                }
+            })
+        }
+        function ajax4() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange(function () {
+                if(xhr.readyState == 4){
+                    console.log(xhr.responseText);
+                }
+            })
+            xhr.open('GET', '/ajax2?p=123');
+            xhr.send(null)
+
         }
     </script>
 </body>
